@@ -10,7 +10,7 @@
      #foreach ($brand in $brands)
        <tr>
            <td><a href="/brand/$brand.getId()">$brand.getName()</a></td>
-           <td><a href="/brand/$brand.getId()">$brand.getSpecialty()</a></td>
+           <td>$brand.getSpecialty()</td>
        </tr>
      #end
    </tbody>

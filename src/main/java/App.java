@@ -183,5 +183,40 @@ public class App {
     return null;
   });
 
+//POST ROUTES FOR INDIVIDUAL BRAND PAGES
+  //ADD STORE
+  post("/brand/:id/add-store", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Brand brand = Brand.find(Integer.parseInt(request.params(":id")));
+    String name = request.queryParams("name");
+    String address = request.queryParams("address");
+    String phone = request.queryParams("phone");
+    Store store = new Store(name, address, phone);
+    store.save();
+    brand.addStore(store.getId());
+    response.redirect("/brand/" + brand.getId());
+    return null;
+  });
+
+  //UPDATE BRAND
+  post("/brand/:id/update", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Brand brand = Brand.find(Integer.parseInt(request.params(":id")));
+    String name = request.queryParams("name");
+    String specialty = request.queryParams("specialty");
+    brand.update(name, specialty);
+    response.redirect("/brand/" + brand.getId());
+    return null;
+  });
+
+  //DELETE THIS BRAND
+  post("/brand/:id/delete", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Brand brand = Brand.find(Integer.parseInt(request.params(":id")));
+    brand.delete();
+    response.redirect("/brands");
+    return null;
+  });
+
   }
 }

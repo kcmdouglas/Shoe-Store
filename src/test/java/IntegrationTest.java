@@ -95,5 +95,14 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("High Heels");
   }
 
+  @Test
+  public void individualBrandPagesLinkProperly() {
+    Brand brand = new Brand("Jimmy Choo", "High Heels");
+    brand.save();
+    goTo("http://localhost:4567/brands");
+    click("a", withText("Jimmy Choo"));
+    assertThat(pageSource()).contains("Jimmy Choo");
+  }
+
 
 }

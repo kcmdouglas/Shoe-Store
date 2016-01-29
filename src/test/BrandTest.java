@@ -22,23 +22,25 @@ public class BrandTest {
     assertEquals("High Heels", Brand.find(brand.getId()).getSpecialty());
   }
 
-  // @Test
-  // public void store_deleteWorksProperly() {
-  //   Store store = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "212 826 8900");
-  //   store.save();
-  //   store.delete();
-  //   assertEquals(Store.all().size(), 0);
-  // }
-  //
-  // @Test
-  // public void store_updateWorksProperly() {
-  //   Store store = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "212 826 8900");
-  //   store.save();
-  //   store.update("Barney's New York", "660 Madison Ave, New York, NY 10065", "212 826 8900");
-  //   assertEquals(store.getName(), "Barney's New York");
-  //   assertEquals(Store.find(store.getId()).getName(), "Barney's New York");
-  // }
-  //
+  @Test
+  public void brand_deleteWorksProperly() {
+    Brand brand = new Brand("Jimmy Choo", "High Heels");
+    brand.save();
+    brand.delete();
+    assertEquals(Brand.all().size(), 0);
+  }
+
+  @Test
+  public void store_updateWorksProperly() {
+    Brand brand = new Brand("Jimmy Choo", "High Heels");
+    brand.save();
+    brand.update("Jimmmmmmy Choo", "High-Heels");
+    assertEquals(brand.getName(), "Jimmmmmmy Choo");
+    assertEquals(Store.find(brand.getId()).getName(), "Jimmmmmmy Choo");
+    assertEquals(brand.getSpecialty(), "High-Heels");
+    assertEquals(Store.find(brand.getId()).getSpecialty(), "High-Heels");
+  }
+
   // @Test
   // public void equals_returnsTrueIfSameNameAddressAndPhoneNumber() {
   //   Store firstStore = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "212 826 8900");

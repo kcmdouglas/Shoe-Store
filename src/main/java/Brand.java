@@ -94,4 +94,14 @@ public class Brand {
       .executeUpdate();
     }
   }
+
+  public List<Store> getAllStores(){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT store.id AS mId, store.name AS mName, store.address AS mAddress, store.phone_number AS mPhoneNumber FROM stores INNER JOIN stores_brands ON stores.id = stores_brands.store_id WHERE stores_brands.brand_id = :id";
+      List<Store> brandList = con.createQuery(sql)
+        .addParameter("id", mId)
+        .executeAndFetch(Store.class);
+      return brandList;
+    }
+  }
 }

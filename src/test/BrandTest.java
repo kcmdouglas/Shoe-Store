@@ -41,13 +41,13 @@ public class BrandTest {
     assertEquals(Store.find(brand.getId()).getSpecialty(), "High-Heels");
   }
 
-  // @Test
-  // public void equals_returnsTrueIfSameNameAddressAndPhoneNumber() {
-  //   Store firstStore = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "212 826 8900");
-  //   firstStore.save();
-  //   Store secondStore = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "212 826 8900");
-  //   secondStore.save();
-  //   assertTrue(firstStore.equals(secondStore));
-  // }
+  @Test
+  public void equals_returnsTrueIfSameNameAddressAndPhoneNumber() {
+    Brand firstBrand = new Brand("Jimmy Choo", "High Heels");
+    firstBrand.save();
+    Brand secondBrand = new Brand("Jimmy Choo", "High Heels");
+    secondBrand.save();
+    assertTrue(firstStore.equals(secondStore));
+  }
 
 }

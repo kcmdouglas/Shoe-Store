@@ -70,6 +70,30 @@ public class Store {
     return store;
     }
   }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+    String deleteStore = "DELETE FROM stores WHERE id = :id;";
+    con.createQuery(deleteStore)
+      .addParameter("id", mId)
+      .executeUpdate();
+    }
+  }
+
+  public void update(String newName, String newAddress, String newPhoneNumber) {
+    mName = newName;
+    mAddress = newAddress;
+    mPhoneNumber = newPhoneNumber;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stores SET name = :name, address = :address, phone_number = :phoneNumber WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("name", newName)
+        .addParameter("address", newAddress)
+        .addParameter("phoneNumber", newPhoneNumber)
+        .addParameter("id", mId)
+        .executeUpdate();
+    }
+  }
 }
 
 

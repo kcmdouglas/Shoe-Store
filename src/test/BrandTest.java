@@ -63,6 +63,7 @@ public class BrandTest {
     Store[] stores = new Store[] {firstStore, secondStore};
     assertTrue(store.getAllStores().containsAll(Arrays.asList(stores)));
   }
+  
 
 
 }

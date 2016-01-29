@@ -71,4 +71,13 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("All Stores");
   }
 
+  @Test
+  public void individualStorePagesLinkProperly() {
+    Store store = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "2128268900");
+    store.save();
+    goTo("http://localhost:4567/stores");
+    click("a", withText("Barneys New York"));
+    assertThat(pageSource()).contains("Barneys New York");
+  }
+
 }

@@ -61,11 +61,12 @@
 <h3>Delete an Existing Store</h3>
 <form action="/stores/delete" method="post" class="form-inline" role="form">
   <div class="form-group">
-    <label for="storeUpdate">Select Existing Store</label>
-    <select id='storeUpdate' name='storeUpdate' type='text'>
+    <label for="storeDelete">Select Existing Store</label>
+    <select id='storeDelete' name='storeDelete' type='text'>
     #foreach($store in $stores)
-      <option value="$client.getId()">$store.getName()</option>
+      <option value="$store.getId()">$store.getName()</option>
     #end
     </select>
+  </div>
   <button type="submit" class="btn btn-danger">Delete Store</button>
 </form>

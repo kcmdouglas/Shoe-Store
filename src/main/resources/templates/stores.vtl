@@ -19,7 +19,7 @@
   </table>
 <hr>
 <hr>
-<h2>Add a New Store</h2>
+<h3>Add a New Store</h3>
 <form action="/stores/new" method="post" class="form-inline" role="form">
   <div class="form-group">
     <label for="name">Store Name</label>
@@ -35,9 +35,7 @@
   <button type="submit" class="btn btn-success">Add Store</button>
 </form>
 <br>
-<h2>Update an Existing Store</h2>
-
-
+<h3>Update an Existing Store</h3>
 <form action="/stores/update" method="post" class="form-inline" role="form">
   <div class="form-group">
     <label for="storeUpdate">Select Existing Store</label>
@@ -46,6 +44,7 @@
       <option value="$client.getId()">$store.getName()</option>
     #end
     </select>
+    <br>
     <label for="name">Store Name</label>
     <input id="name" name="name" type="text" class="form-control" required style="width: 250px;">
 
@@ -56,5 +55,17 @@
     <input type="number" id="phone" name="phone" min="1" max="9999999999" required>
   </div>
 
-  <button type="submit" class="btn btn-success">Add Store</button>
+  <button type="submit" class="btn btn-info">Update Store</button>
+</form>
+<br>
+<h3>Delete an Existing Store</h3>
+<form action="/stores/delete" method="post" class="form-inline" role="form">
+  <div class="form-group">
+    <label for="storeUpdate">Select Existing Store</label>
+    <select id='storeUpdate' name='storeUpdate' type='text'>
+    #foreach($store in $stores)
+      <option value="$client.getId()">$store.getName()</option>
+    #end
+    </select>
+  <button type="submit" class="btn btn-danger">Delete Store</button>
 </form>

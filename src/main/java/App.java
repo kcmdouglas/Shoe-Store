@@ -28,8 +28,8 @@ public class App {
     }, new VelocityTemplateEngine());
 
 
-//Post Routes for Adding
-
+//Post Routes for Stores page
+  //ADD
   post("/stores/new", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     String name = request.queryParams("name");
@@ -44,25 +44,35 @@ public class App {
     return null;
   });
 
-//Post Routes for Updating
+  //UPDATE
+  post("/stores/update", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Integer storeId = Integer.parseInt(request.queryParams("storeUpdate"));
+    String name = request.queryParams("name");
+    String address = request.queryParams("address");
+    String phone = request.queryParams("phone");
 
-post("/stores/update", (request, response) -> {
-  HashMap<String, Object> model = new HashMap<String, Object>();
-  Integer storeId = Integer.parseInt(request.queryParams("storeUpdate"));
-  String name = request.queryParams("name");
-  String address = request.queryParams("address");
-  String phone = request.queryParams("phone");
 
+    Store store = Store.find(storeId);
 
-  Store store = Store.find(storeId);
+    store.update(name, address, phone);
 
-  store.update(name, address, phone);
+    response.redirect("/stores");
+    return null;
+  });
 
-  response.redirect("/stores");
-  return null;
-});
+  //DELETE
+  post("/stores/delete", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Integer storeId = Integer.parseInt(request.queryParams("storeUpdate"));
+    Store store = Store.find(storeId);
 
-//Post Routes for Deleting
+    store.delete();
+
+    response.redirect("/stores");
+    return null;
+  });
+
 
   }
 }

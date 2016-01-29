@@ -58,4 +58,17 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("2127534000");
   }
 
+  @Test
+  public void deleteStoreTest() {
+    Store store = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "2128268900");
+    store.save();
+    goTo("http://localhost:4567/stores");
+    assertThat(pageSource()).contains("Barneys New York");
+    assertThat(pageSource()).contains("660 Madison Ave, New York, NY 10065");
+    assertThat(pageSource()).contains("2128268900");
+    store.delete();
+    goTo("http://localhost:4567/stores");
+    assertThat(pageSource()).contains("All Stores");
+  }
+
 }

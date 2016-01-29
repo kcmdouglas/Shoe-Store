@@ -47,4 +47,18 @@ public class StoreTest {
     assertTrue(firstStore.equals(secondStore));
   }
 
+  @Test
+  public void getAllBrands_returnsAllBrandsAStoreCarries() {
+    Store store = new Store("Barneys New York", "660 Madison Ave, New York, NY 10065", "212 826 8900");
+    store.save();
+    Brand firstBrand = new Brand("Jimmy Choo", "High Heels");
+    firstBrand.save();
+    Brand secondBrand = new Brand("Christian Louboutin", "High Heels");
+    secondBrand.save();
+    store.addBrand(firstBrand.getId());
+    store.addBrand(secondBrand.getId());
+    Brand[] brands = new Brand[] {firstBrand, secondBrand};
+    assertTrue(store.getAllBrands().containsAll(Arrays.asList(brands)));
+  }
+
 }

@@ -84,4 +84,14 @@ public class Brand {
         .executeUpdate();
     }
   }
+
+  public void addStore(int storeId) {
+  try(Connection con = DB.sql2o.open()) {
+    String sql = "INSERT INTO stores_brands(store_id, brand_id)  VALUES (:storeId, :brandId)";
+    con.createQuery(sql)
+      .addParameter("storeId", storeId)
+      .addParameter("brandId", this.getId())
+      .executeUpdate();
+    }
+  }
 }

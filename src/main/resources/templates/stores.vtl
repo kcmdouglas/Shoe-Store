@@ -1,28 +1,20 @@
- <h1>Full Catalog</h1>
+ <h1>All Stores</h1>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Author's Last Name </th>
-        <th>Author's First Name</th>
-        <th>Title</th>
-        <th>Genre</th>
-        <th>Age Group</th>
+        <th>Store Name </th>
+        <th>Address</th>
+        <th>Phone Number</th>
       </tr>
     </thead>
     <tbody>
-      #foreach ($book in $books)
+      #foreach ($store in $stores)
         <tr>
-          #foreach ($lastName in $book.getAllAuthorsLastName())
-            <td><a href="/admin/author/$lastName.getId()"> $lastName.getLastName()</a></td>
-          #end
-          #foreach ($firstName in $book.getAllAuthorsFirstName())
-            <td><a href="/admin/author/$firstName.getId()">$firstName.getFirstName()</a></td>
-          #end
-          <td><a href="/admin/book/$book.getId()">$book.getTitle()</a></td>
-          #foreach ($genre in $book.getAllGenres())
-            <td>$genre.getName()</td>
-          #end
-          <td>$book.getAgeGroup()</td>
+          <a href="/store/$store.getId()">
+            <td>$store.getName()</td>
+            <td>$store.getAddress()</td>
+            <td>$store.getPhoneNumber()</td>
+          </a>
         </tr>
       #end
     </tbody>

@@ -27,5 +27,11 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Welcome to the Epicodus Shoe Compendium");
   }
 
+  @Test
+  public void storesTest() {
+    goTo("http://localhost:4567/stores");
+    assertThat(pageSource()).contains("All Stores");
+  }
+
 
 }

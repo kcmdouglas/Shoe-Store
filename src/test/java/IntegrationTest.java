@@ -80,4 +80,20 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Barneys New York");
   }
 
+  @Test
+  public void brandsTest() {
+    goTo("http://localhost:4567/brands");
+    assertThat(pageSource()).contains("All Brands");
+  }
+
+  @Test
+  public void addBrandTest() {
+    Brand brand = new Brand("Jimmy Choo", "High Heels");
+    brand.save();
+    goTo("http://localhost:4567/brands");
+    assertThat(pageSource()).contains("Jimmy Choo");
+    assertThat(pageSource()).contains("High Heels");
+  }
+
+
 }

@@ -1,0 +1,63 @@
+<h1>All Brands</h1>
+ <table class="table table-hover">
+   <thead>
+     <tr>
+       <th>Brand Name</th>
+       <th>Specialty</th>
+     </tr>
+   </thead>
+   <tbody>
+     #foreach ($brand in $brands)
+       <tr>
+           <td><a href="/brand/$brand.getId()">$brand.getName()</a></td>
+           <td><a href="/brand/$brand.getId()">$brand.getSpecialty()</a></td>
+       </tr>
+     #end
+   </tbody>
+ </table>
+<hr>
+<hr>
+<h3>Add a New Brand</h3>
+<form action="/brands/new" method="post" class="form-inline" role="form">
+ <div class="form-group">
+   <label for="name">Brand Name</label>
+   <input id="name" name="name" type="text" class="form-control" required style="width: 250px;">
+
+   <label for="specialty">Specialty</label>
+   <input id="specialty" name="specialty" type="text" class="form-control" required style="width: 300px;">
+
+ <button type="submit" class="btn btn-success">Add Brand</button>
+</form>
+<br>
+<h3>Update an Existing Brand</h3>
+<form action="/brands/update" method="post" class="form-inline" role="form">
+ <div class="form-group">
+   <label for="brandUpdate">Select Existing Brand</label>
+   <select id='brandUpdate' name='brandUpdate' type='text'>
+   #foreach($brand in $brands)
+     <option value="$client.getId()">$brand.getName()</option>
+   #end
+   </select>
+   <br>
+   <label for="name">Brand Name</label>
+   <input id="name" name="name" type="text" class="form-control" required style="width: 250px;">
+
+   <label for="specialty">Specialty</label>
+   <input id="specialty" name="specialty" type="text" class="form-control" required style="width: 300px;">
+ </div>
+
+ <button type="submit" class="btn btn-info">Update Brand</button>
+</form>
+<br>
+<h3>Delete an Existing Brand</h3>
+<form action="/brands/delete" method="post" class="form-inline" role="form">
+ <div class="form-group">
+   <label for="brandDelete">Select Existing Brand</label>
+   <select id='brandDelete' name='brandDelete' type='text'>
+   #foreach($brand in $brands)
+     <option value="$brand.getId()">$brand.getName()</option>
+   #end
+   </select>
+ </div>
+ <button type="submit" class="btn btn-danger">Delete Brand</button>
+</form>

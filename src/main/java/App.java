@@ -20,7 +20,6 @@ public class App {
 
   get("/stores", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
-
     model.put("stores", Store.all());
     model.put("store", Store.class);
     model.put("template", "templates/stores.vtl");
@@ -34,6 +33,24 @@ public class App {
     model.put("store", store);
     model.put("brand", Brand.class);
     model.put("template", "templates/store.vtl");
+    return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+  get("/brands", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    model.put("brands", Brand.all());
+    model.put("brand", Brand.class);
+    model.put("template", "templates/brands.vtl");
+    return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+  get("/brand/:id", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Brand brand = Brand.find(Integer.parseInt(request.params(":id")));
+    model.put("brands", Brand.all());
+    model.put("brand", brand);
+    model.put("store", Store.class);
+    model.put("template", "templates/brand.vtl");
     return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -123,6 +140,48 @@ public class App {
     return null;
   });
 
+//POST ROTES FOR BRANDS PAGE
+  //ADD
+  post("/brands/new", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    String name = request.queryParams("name");
+    String specialty = request.queryParams("specialty");
+
+
+    Brand brand = new Brand(name, specialty);
+    brand.save();
+
+    response.redirect("/brands");
+    return null;
+  });
+
+  //UPDATE
+  post("/brands/update", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Integer brandId = Integer.parseInt(request.queryParams("brandUpdate"));
+    String name = request.queryParams("name");
+    String specialty = request.queryParams("specialty");
+
+
+    Brand brand = Brand.find(brandId);
+
+    brand.update(name, specialty);
+
+    response.redirect("/brands");
+    return null;
+  });
+
+  //DELETE
+  post("/brands/delete", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Integer brandId = Integer.parseInt(request.queryParams("brandDelete"));
+    Brand brand = Brand.find(brandId);
+
+    brand.delete();
+
+    response.redirect("/brands");
+    return null;
+  });
 
   }
 }

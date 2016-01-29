@@ -10,12 +10,51 @@
     <tbody>
       #foreach ($store in $stores)
         <tr>
-          <a href="/store/$store.getId()">
-            <td>$store.getName()</td>
-            <td>$store.getAddress()</td>
-            <td>$store.getPhoneNumber()</td>
-          </a>
+            <td><a href="/store/$store.getId()">$store.getName()</a></td>
+            <td><a href="/store/$store.getId()">$store.getAddress()</a></td>
+            <td><a href="/store/$store.getId()">$store.getPhoneNumber()</a></td>
         </tr>
       #end
     </tbody>
   </table>
+<hr>
+<hr>
+<h2>Add a New Store</h2>
+<form action="/stores/new" method="post" class="form-inline" role="form">
+  <div class="form-group">
+    <label for="name">Store Name</label>
+    <input id="name" name="name" type="text" class="form-control" required style="width: 250px;">
+
+    <label for="address">Address</label>
+    <input id="address" name="address" type="text" class="form-control" required style="width: 300px;">
+
+    <label for="phone">Phone Number</label>
+    <input type="number" id="phone" name="phone" min="1" max="9999999999" required>
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Store</button>
+</form>
+<br>
+<h2>Update an Existing Store</h2>
+
+
+<form action="/stores/update" method="post" class="form-inline" role="form">
+  <div class="form-group">
+    <label for="storeUpdate">Select Existing Store</label>
+    <select id='storeUpdate' name='storeUpdate' type='text'>
+    #foreach($store in $stores)
+      <option value="$client.getId()">$store.getName()</option>
+    #end
+    </select>
+    <label for="name">Store Name</label>
+    <input id="name" name="name" type="text" class="form-control" required style="width: 250px;">
+
+    <label for="address">Address</label>
+    <input id="address" name="address" type="text" class="form-control" required style="width: 300px;">
+
+    <label for="phone">Phone Number</label>
+    <input type="number" id="phone" name="phone" min="1" max="9999999999" required>
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Store</button>
+</form>

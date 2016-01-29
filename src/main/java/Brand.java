@@ -35,10 +35,10 @@ public class Brand {
     }
   }
 
-  public static List<Store> all() {
+  public static List<Brand> all() {
     String sql = "SELECT id AS mId, name AS mName, specialty as mSpecialty FROM brands";
     try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql).executeAndFetch(Store.class);
+      return con.createQuery(sql).executeAndFetch(Brand.class);
     }
   }
 
@@ -97,7 +97,7 @@ public class Brand {
 
   public List<Store> getAllStores(){
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT store.id AS mId, store.name AS mName, store.address AS mAddress, store.phone_number AS mPhoneNumber FROM stores INNER JOIN stores_brands ON stores.id = stores_brands.store_id WHERE stores_brands.brand_id = :id";
+      String sql = "SELECT stores.id AS mId, stores.name AS mName, stores.address AS mAddress, stores.phone_number AS mPhoneNumber FROM stores INNER JOIN stores_brands ON stores.id = stores_brands.store_id WHERE stores_brands.brand_id = :id";
       List<Store> brandList = con.createQuery(sql)
         .addParameter("id", mId)
         .executeAndFetch(Store.class);

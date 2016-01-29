@@ -28,7 +28,41 @@ public class App {
     }, new VelocityTemplateEngine());
 
 
+//Post Routes for Adding
 
+  post("/stores/new", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    String name = request.queryParams("name");
+    String address = request.queryParams("address");
+    String phone = request.queryParams("phone");
+
+
+    Store store = new Store(name, address, phone);
+    store.save();
+
+    response.redirect("/stores");
+    return null;
+  });
+
+//Post Routes for Updating
+
+post("/stores/update", (request, response) -> {
+  HashMap<String, Object> model = new HashMap<String, Object>();
+  Integer storeId = Integer.parseInt(request.queryParams("storeUpdate"));
+  String name = request.queryParams("name");
+  String address = request.queryParams("address");
+  String phone = request.queryParams("phone");
+
+
+  Store store = Store.find(storeId);
+
+  store.update(name, address, phone);
+
+  response.redirect("/stores");
+  return null;
+});
+
+//Post Routes for Deleting
 
   }
 }

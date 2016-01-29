@@ -36,9 +36,9 @@ public class BrandTest {
     brand.save();
     brand.update("Jimmmmmmy Choo", "High-Heels");
     assertEquals(brand.getName(), "Jimmmmmmy Choo");
-    assertEquals(Store.find(brand.getId()).getName(), "Jimmmmmmy Choo");
+    assertEquals(Brand.find(brand.getId()).getName(), "Jimmmmmmy Choo");
     assertEquals(brand.getSpecialty(), "High-Heels");
-    assertEquals(Store.find(brand.getId()).getSpecialty(), "High-Heels");
+    assertEquals(Brand.find(brand.getId()).getSpecialty(), "High-Heels");
   }
 
   @Test
@@ -47,7 +47,7 @@ public class BrandTest {
     firstBrand.save();
     Brand secondBrand = new Brand("Jimmy Choo", "High Heels");
     secondBrand.save();
-    assertTrue(firstStore.equals(secondStore));
+    assertTrue(firstBrand.equals(secondBrand));
   }
 
   @Test
@@ -61,9 +61,9 @@ public class BrandTest {
     brand.addStore(firstStore.getId());
     brand.addStore(secondStore.getId());
     Store[] stores = new Store[] {firstStore, secondStore};
-    assertTrue(store.getAllStores().containsAll(Arrays.asList(stores)));
+    assertTrue(brand.getAllStores().containsAll(Arrays.asList(stores)));
   }
-  
+
 
 
 }

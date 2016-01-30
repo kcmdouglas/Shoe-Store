@@ -21,8 +21,8 @@ This repository is a code review for week four of Java. In it, someone could add
 ```
 CREATE DATABASE shoe_stores;
 CREATE TABLE stores (id serial PRIMARY KEY, name varchar, address varchar, phone_number varchar);
-CREATE TABLE brands (id serial PRIMARY KEY, name varchar, specialty);
-CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id, brand_id);
+CREATE TABLE brands (id serial PRIMARY KEY, name varchar, specialty varchar);
+CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id int, brand_id int);
 CREATE DATABASE shoe_stores_test WITH TEMPLATE shoe_stores;
 ```
 

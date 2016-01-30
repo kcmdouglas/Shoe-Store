@@ -54,6 +54,39 @@ public class App {
     return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+  get("/search", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    String userQuery = request.queryParams("search").trim();
+    Boolean storeSuccess = false;
+    Boolean brandSuccess = false;
+    List<Store> storeSearchResults = Store.storeSearch(userQuery);
+    List<Brand> brandSearchResults = Brand.brandSearch(userQuery);
+
+    if (Integer.parseInt(request.queryParams("search-type")) == 1) {
+      Store.storeSearch(userQuery);
+    } else if (Integer.parseInt(request.queryParams("search-type")) == 2) {
+      Brand.brandSearch(userQuery);
+    }
+
+    if (!(storeSearchResults.isEmpty())) {
+      storeSuccess = true;
+    } else if (!(brandSearchResults.isEmpty())) {
+      brandSuccess = true;
+    }
+
+    model.put("storeSuccess", storeSuccess);
+    model.put("brandSuccess", brandSuccess);
+    model.put("storeSearchResults", storeSearchResults);
+    model.put("brandSearchResults", brandSearchResults);
+    model.put("userQuery", userQuery);
+    model.put("stores", Store.all());
+    model.put("store", Store.class);
+    model.put("brands", Store.all());
+    model.put("brand", Brand.class);
+    model.put("template", "templates/search.vtl");
+    return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
 //POST ROTES FOR STORES PAGE
   //ADD

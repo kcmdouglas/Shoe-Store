@@ -1,0 +1,13 @@
+<h1>Here's what we found:</h1>
+
+#if ($storeSuccess)
+  #foreach($store in $storeSearchResults)
+  <a href="/store/$store.getId()"><li>$store.getName()</li></a>
+  #end
+#elseif ($brandSuccess)
+  #foreach($brand in $brandSearchResults)
+  <a href="/brand/$brand.getId()"><li>$brand.getName()</li></a>
+  #end
+#else
+  <h3>Unfortunately, your search brought about no results...</h3>
+#end

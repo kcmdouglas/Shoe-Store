@@ -125,22 +125,13 @@ public class Store {
     }
   }
 
-
+  public static List<Store> storeSearch(String userInput){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id AS mId, name AS mName FROM stores WHERE name LIKE :userInput";
+      List<Store> storeList = con.createQuery(sql)
+        .addParameter("userInput", "%" + userInput + "%")
+        .executeAndFetch(Store.class);
+      return storeList;
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-  //
-  // String  = "044 668 18 00"
-  // PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-  // try {
-  //   PhoneNumber swissNumberProto = phoneUtil.parse(swissNumberStr, "CH");
-  // } catch (NumberParseException e) {
-  //   System.err.println("NumberParseException was thrown: " + e.toString());
-  // }

@@ -104,5 +104,15 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Jimmy Choo");
   }
 
+  @Test
+  public void searchPageFunctionsCorrectly() {
+    Brand brand = new Brand("Jimmy Choo", "High Heels");
+    brand.save();
+    goTo("http://localhost:4567/");
+    fill("search", withText("Jimmy"));
+    submit(".btn");
+    assertThat(pageSource()).contains("Jimmy Choo");
+  }
+
 
 }

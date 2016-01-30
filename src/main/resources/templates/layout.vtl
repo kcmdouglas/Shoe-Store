@@ -2,8 +2,19 @@
 <html>
   <head>
     <title>Shoe Compendium</title>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        width: 80%;
+        margin: auto;
+    }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -27,9 +38,8 @@
           <div class="form-group">
             <label for="search">Search</label>
             <select id="search-type" name="search-type">
-              <option value="1">Brands</option>
-              <option value="2">Stores</option>
-              <option value="3">Specialty</option>
+              <option value="1">Stores</option>
+              <option value="2">Brands</option>
             </select>
             <input id="search" type="text" name="search" class="form-control" placeholder="Search" style="width: 250px;" required>
           </div>

@@ -104,4 +104,14 @@ public class Brand {
       return brandList;
     }
   }
+
+  public static List<Brand> brandSearch(String userInput){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id AS mId, name AS mName FROM brands WHERE name LIKE :userInput";
+      List<Brand> brandList = con.createQuery(sql)
+        .addParameter("userInput", "%"+userInput+"%")
+        .executeAndFetch(Brand.class);
+      return brandList;
+    }
+  }
 }
